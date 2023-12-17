@@ -1,6 +1,6 @@
 GET http://localhost:3000/test
 
-GET http://localhost:3000/health-checkup?username=sony&password=pass&kidneyId=1 HTTP/1.1
+GET http://localhost:3000/health-checkup?username=sony&password=pass&kidneyId=2
 
 
 POST http://localhost:3000/health-checkup HTTP/1.1

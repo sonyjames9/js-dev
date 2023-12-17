@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 
+app.use(express.json())
 app.get("/test", function (req, res) {
   res.json({"msg": "test"})
 })
@@ -10,22 +11,22 @@ app.get("/health-checkup", function (req, res) {
   
   const username = req.query.username
   const password = req.query.password
-  const kidneyId = req.query.kidneyId
-  console.log(kidneyId);
-  console.log(typeof(kidneyId));
+  const kidneyId = parseInt(req.query.kidneyId)
   
   if ((username != "sony" || password != "pass")) {
-    console.log(username)
-    console.log(password)
     res.status(400)
-      .sethHader("Content-Type", "application/json")
-      .json({ "msg": "Username or password is not right" })
+    .setHeader("Content-Type", "application/json")
+    .json({ "msg": "Username or password is not right" })
     return
   }
-  if (kidneyId != "1" || kidneyId != "2") {
-    res.status(400).json({"msg": "Incorrect inputs"})
+
+  if (!([1,2].includes(kidneyId))) {
+    console.log(kidneyId);
+    console.log(typeof(kidneyId));
+    res.status(400).json({ "msg": "Incorrect inputs" })
+    return
   }
-  res.json({
+  res.status(200).json({
     msg: "Your kidney is fine"
   })
 })
