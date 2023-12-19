@@ -11,3 +11,19 @@ Content-Type: application/json
   "password": "pass",
   "kidneyId": 1
 }
+
+POST http://localhost:3000/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "harkirat@gmail.com",
+  "password": "123"
+}
+
+GET http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhcmtpcmF0QGdtYWlsLmNvbSIsImlhdCI6MTcwMjgyNTUwN30.XlP_cuAKRqvIxbj3g60gq2D4clNn5gIg_n48OpI0K-U
+
+{
+  "username": "harkirat@gmail.com"
+}
