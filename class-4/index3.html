@@ -1,0 +1,53 @@
+<html>
+<br>
+<script>
+
+  let timeout
+  function debouncePopulateDiv() {
+    //  delay the call to poplateDiv until its not called for 100ms
+    //  and I am supposed to call atleast once
+    //  How to cancel a clock?
+    //  call clearTimeout()
+
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      populateDiv()
+    }, 100);
+
+    clearTimeout(timeout)
+  }
+
+  function populateDiv() {
+    const a = document.getElementById("firstNumber").value;
+    const b = document.getElementById("secondNumber").value;
+    var val = "https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b
+    console.log(val);
+    fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+      .then(function (response) {
+        console.log(response);
+        response.text()
+          .then(function (ans) {
+            console.log(ans);
+            document.getElementById("finalSum").innerHTML = ans
+          })
+      })
+  }
+
+  async function populateDiv2() {
+    const a = document.getElementById("firstNumber").value;
+    const b = document.getElementById("secondNumber").value;
+
+    const response = await fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b);
+    const ans = await response.text();
+    document.getElementById("finalSum").innerHTML = ans;
+  }
+</script>
+
+<body>
+  <input oninput="populateDiv()" id="firstNumber" type="text" placeholder="firstNumber"></input> <br><br>
+  <input oninput="populateDiv()" id="secondNumber" type="text" placeholder="secondNumber"></input> <br><br>
+  <button onclick="populateDiv()"> Calculate Sum</button> </br>
+  <div id="finalSum"></div>
+</body>
+
+</html>
