@@ -21,6 +21,11 @@ document.getElementByClassName("finalSum")
 document.querySelector("finalSum")
 document.querySelectorsAll("finalSum")
 
+State/Components/Re-rendering -- An object that represents the current state of the app It represents the dynamic things in your app (things that change). For example, the value of the counter
 
-bn_user_admin
-Devops@123
+A state change triggers a re-render. A re-render represents the actual DOM being manipulated when the state changes
+
+You usually have to define all your components once
+And then all you have to do is update the state of your app, React takes care of re-rendering your app
+
+Whenever a state changes, re-render the button/function
